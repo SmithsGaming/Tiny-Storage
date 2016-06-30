@@ -1,8 +1,7 @@
 package com.smithsmodding.tinystorage.api.reference;
 
-import com.smithsmodding.tinystorage.api.reference.References;
-import com.smithsmodding.tinystorage.common.item.ItemModule;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
@@ -12,4 +11,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ModItems {
 
     public static Item itemModule;
+
+    public static class Blocks {
+        public static ItemBlock blockChest;
+    }
 }

@@ -2,11 +2,11 @@
   "parent": "item/generated",
   "components": {
     "default": "tinystorage:items/storageComponentSmall",
-    "tinystorage:storage:small": "tinystorage:items/storageComponentSmall",
-    "tinystorage:storage:medium": "tinystorage:items/storageComponentMedium",
-    "tinystorage:storage:large": "tinystorage:items/storageComponentLarge",
-    "tinystorage:filter:small": "tinystorage:items/chestFilterSmall",
-    "tinystorage:filter:medium": "tinystorage:items/chestFilterMedium",
-    "tinystorage:filter:large": "tinystorage:items/chestFilterLarge"
+    "tinystorage.storage.small": "tinystorage:items/storageComponentSmall",
+    "tinystorage.storage.medium": "tinystorage:items/storageComponentMedium",
+    "tinystorage.storage.large": "tinystorage:items/storageComponentLarge",
+    "tinystorage.filter.small": "tinystorage:items/chestFilterSmall",
+    "tinystorage.filter.medium": "tinystorage:items/chestFilterMedium",
+    "tinystorage.filter.large": "tinystorage:items/chestFilterLarge"
   }
 }

@@ -4,11 +4,14 @@ import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.client.model.loader.MultiComponentModelLoader;
 import com.smithsmodding.smithscore.util.client.ResourceHelper;
 import com.smithsmodding.tinystorage.TinyStorage;
-import com.smithsmodding.tinystorage.api.reference.References;
-import com.smithsmodding.tinystorage.client.model.loader.ModuleItemModelLoader;
+import com.smithsmodding.tinystorage.api.reference.ModBlocks;
 import com.smithsmodding.tinystorage.api.reference.ModItems;
-import com.smithsmodding.tinystorage.common.item.ItemModule;
+import com.smithsmodding.tinystorage.api.reference.References;
+import com.smithsmodding.tinystorage.client.model.loader.ChestModelLoader;
+import com.smithsmodding.tinystorage.client.model.loader.ModuleItemModelLoader;
+import com.smithsmodding.tinystorage.common.block.BlockChestBase;
 import com.smithsmodding.tinystorage.common.proxy.CommonProxy;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -25,6 +28,12 @@ import net.minecraftforge.fml.relauncher.Side;
 public class ClientProxy extends CommonProxy {
 
     private static ModuleItemModelLoader moduleItemModelLoader = ModuleItemModelLoader.instance;
+    private static ChestModelLoader chestModelLoader = ChestModelLoader.instance;
+
+    public static void registerBlockModel(Block block) {
+        Item blockItem = Item.getItemFromBlock(block);
+        ModelLoader.setCustomModelResourceLocation(blockItem, 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
+    }
 
     public static ResourceLocation registerModuleItemModel(Item item) {
         ResourceLocation itemLocation = ResourceHelper.getItemLocation(item);
@@ -63,10 +72,18 @@ public class ClientProxy extends CommonProxy {
     }
     
     @Override
-    public void initRenderingAndTextures() {
+    public void initItemRendering() {
         moduleItemModelLoader.registerDomain(References.MOD_ID);
+
         ModelLoaderRegistry.registerLoader(moduleItemModelLoader);
+        ModelLoaderRegistry.registerLoader(chestModelLoader);
+
         registerModuleItemModel(ModItems.itemModule);
+    }
+
+    @Override
+    public void initIileRendering() {
+        registerBlockModel(ModBlocks.blockChest);
     }
 
     @Override
@@ -82,6 +99,11 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void postInit() {
         TinyStorage.side = Side.CLIENT;
+    }
+
+    @Override
+    public void onLoadComplete() {
+        ((BlockChestBase) ModBlocks.blockChest).updateExtendedStateDefinition();
     }
 
     @Override

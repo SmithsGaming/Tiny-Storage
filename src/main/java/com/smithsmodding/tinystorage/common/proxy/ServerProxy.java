@@ -13,7 +13,12 @@ public class ServerProxy extends CommonProxy {
     }
 
     @Override
-    public void initRenderingAndTextures() {
+    public void initItemRendering() {
+    }
+
+    @Override
+    public void initIileRendering() {
+
     }
 
     @Override

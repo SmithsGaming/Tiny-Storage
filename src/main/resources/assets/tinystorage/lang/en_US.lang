@@ -1,0 +1,14 @@
+# Module names
+###########################
+tinystorage.module.names.core=Core module framework.
+tinystorage.module.names.filter=Filter Component | Capacity: %1$
+tinystorage.module.names.storage=Storage Component | Capacity: %1$
+#
+# Block
+###########################
+tile.tinystorage.blocks.base.name=Modular Tiny Chest
+#
+# Stack details
+###########################
+tinystorage.stackdetails.general.pressshift=Press shift for more information.
+tinystorage.stackdetails.chest.installedmodules=Installed modules

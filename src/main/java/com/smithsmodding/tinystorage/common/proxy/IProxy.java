@@ -11,7 +11,9 @@ public interface IProxy {
 
     CommonProxy getCommonProxy();
 
-    void initRenderingAndTextures ();
+    void initItemRendering();
+
+    void initIileRendering();
 
     void registerEventHandlers ();
 
@@ -24,6 +26,8 @@ public interface IProxy {
     void init();
 
     void postInit();
+
+    void onLoadComplete();
 
     void registerIMCs();
 }

@@ -16,13 +16,10 @@ public class References {
 
     public static class Modules {
 
-        public class ModuleNames {
-            public static final String SMALL_STORAGE_MODULE = "tinystorage:storage:small";
-            public static final String MEDIUM_STORAGE_MODULE = "tinystorage:storage:medium";
-            public static final String LARGE_STORAGE_MODULE = "tinystorage:storage:large";
-            public static final String SMALL_FILTER_MODULE = "tinystorage:filter:small";
-            public static final String MEDIUM_FILTER_MODULE = "tinystorage:filter:medium";
-            public static final String LARGE_FILTER_MODULE = "tinystorage:filter:large";
+        public static class Limits {
+            public static final int SMALL_SIZE = 3;
+            public static final int MEDIUM_SIZE = 6;
+            public static final int LARGE_SIZE = 9;
         }
 
         public static class Storage {
@@ -36,9 +33,42 @@ public class References {
             public static final int MEDIUM_SIZE = 6;
             public static final int LARGE_SIZE = 9;
         }
+
+        public class ModuleNames {
+            public static final String CORE = "tinystorage.core";
+            public static final String SMALL_STORAGE_MODULE = "tinystorage.storage.small";
+            public static final String MEDIUM_STORAGE_MODULE = "tinystorage.storage.medium";
+            public static final String LARGE_STORAGE_MODULE = "tinystorage.storage.large";
+            public static final String SMALL_FILTER_MODULE = "tinystorage.filter.small";
+            public static final String MEDIUM_FILTER_MODULE = "tinystorage.filter.medium";
+            public static final String LARGE_FILTER_MODULE = "tinystorage.filter.large";
+        }
     }
 
     public class Items {
-        public static final String ItemModule = "tinystorage.items.module";
+        public static final String ITEMMODULE = "tinystorage.items.module";
+    }
+
+    public class Blocks {
+        public static final String BLOCKCHESTBASE = "tinystorage.blocks.base";
+
+        public class Properties {
+            public static final String MODULES = "tinystorage.blocks.propeties.modules";
+        }
+    }
+
+    public class NBT {
+        public class Blocks {
+            public class Chests {
+                public static final String INSTALLEDMODULES = "Modules";
+                public static final String MODULEID = "ModuleID";
+                public static final String MODULEDATA = "ModuleData";
+            }
+        }
+
+        public class Inventory {
+            public static final String SLOT = "Slot";
+            public static final String INVENTORY = "Inventory";
+        }
     }
 }

@@ -2,9 +2,12 @@ package com.smithsmodding.tinystorage.common.modules;
 
 import com.smithsmodding.tinystorage.api.common.chest.IModularChest;
 import com.smithsmodding.tinystorage.api.common.modules.IStorageModule;
+import com.smithsmodding.tinystorage.api.reference.ModTranslationKeys;
+import com.smithsmodding.tinystorage.api.reference.References;
+import com.smithsmodding.tinystorage.api.util.NBTHelper;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.text.ITextComponent;
 
 /**
@@ -63,13 +66,18 @@ public class ModuleStorage implements IStorageModule {
     }
 
     @Override
+    public String getRegisteringModId() {
+        return References.MOD_ID;
+    }
+
+    @Override
     public String getUniqueID() {
         return uniqueId;
     }
 
     @Override
     public String getDisplayText() {
-        return "Storage Component | Capacity: " + inventory.length;
+        return I18n.format(ModTranslationKeys.Modules.STORAGE, inventory.length);
     }
 
     @Override
@@ -88,31 +96,12 @@ public class ModuleStorage implements IStorageModule {
 
     @Override
     public NBTTagCompound writeToNBT() {
-        NBTTagCompound tagCompound = new NBTTagCompound();
-        NBTTagList itemList = new NBTTagList();
-        for (int i = 0; i < inventory.length; i++) {
-            ItemStack stack = inventory[i];
-            if (stack != null) {
-                NBTTagCompound tag = new NBTTagCompound();
-                tag.setByte("Slot", (byte) i);
-                stack.writeToNBT(tag);
-                itemList.appendTag(tag);
-            }
-        }
-        tagCompound.setTag("Inventory", itemList);
-        return tagCompound;
+        return NBTHelper.writeItemStacks(inventory);
     }
 
     @Override
     public void loadFromNBT(NBTTagCompound tagCompound) {
-        NBTTagList tagList = tagCompound.getTagList("Inventory", 10);
-        for (int i = 0; i < tagList.tagCount(); i++) {
-            NBTTagCompound tag = tagList.getCompoundTagAt(i);
-            byte slot = tag.getByte("Slot");
-            if (slot >= 0 && slot < inventory.length) {
-                inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
-            }
-        }
+        inventory = NBTHelper.readItemStacks(tagCompound, inventory.length);
     }
 
     @Override

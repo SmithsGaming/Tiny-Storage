@@ -33,6 +33,10 @@ public abstract class CommonProxy implements IProxy{
     }
 
     @Override
+    public void onLoadComplete() {
+    }
+
+    @Override
     public void registerIMCs() {
         TinyStorage.getLogger().info("Registering IMC callbacks");
         for (String s : GeneralRegistry.instance().IMCRequests.keySet()) {

@@ -9,6 +9,12 @@ import net.minecraft.nbt.NBTTagCompound;
 public interface IModule {
 
     /**
+     * Getter for the ModId of the registering mod.
+     * @return The mod Id of the registering mod.
+     */
+    String getRegisteringModId();
+
+    /**
      * Method to get the ID for a module
      *
      * @return The unique ID

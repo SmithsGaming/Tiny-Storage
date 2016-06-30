@@ -89,6 +89,7 @@ public class TinyStorage {
     public void loadComplete(FMLLoadCompleteEvent event) {
         logger.info("FML Load Complete");
         proxy.registerIMCs();
+        proxy.onLoadComplete();
     }
 
     @Mod.EventHandler
